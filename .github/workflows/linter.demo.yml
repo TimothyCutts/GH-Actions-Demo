@@ -32,8 +32,4 @@ jobs:
           name: flake8-results
           path: ${{ github.workspace }}/flake8-output.txt  
 
-<<<<<<< HEAD
           
-=======
-          
->>>>>>> f5d9617e1369a5895d6ef1f488afe5c6e70b2dd8
