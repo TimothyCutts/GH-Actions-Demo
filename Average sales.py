@@ -7,7 +7,7 @@
 ##sales are given to us to preload the array
 
 
-#Funtion to find average sale with in the array
+#Function to find average sale with in the array
 def AverageSale(sales):
     #declare variables
     average_sale = float()
