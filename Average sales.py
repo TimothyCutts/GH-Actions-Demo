@@ -40,7 +40,7 @@ def AboveAverage(sales, average_sale):
 
 #function to sort the list for the highest sale
 def HighestSale(sales):
-    #delcare variables
+    #declare variables
     hightest = int()
     highest_index = int()
     index = int()

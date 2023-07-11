@@ -1,29 +1,35 @@
-name: Python package
+name: Flake8 Lint
 
 on: [push]
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Python # Set Python version
-        uses: actions/setup-python@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
-      # Install pip and flake8
-      - name: Install dependencies
+          python-version: 3.x
+
+      - name: Install Flake8
+        run: python -m pip install flake8
+        
+      - name: Run Flake8 and Save Output
         run: |
-          python -m pip install --upgrade pip
-          pip install flake8
-      - name: Test with flake8
-        run: python3 -m flake8 .
-      - name: Upload pytest test results
+          cd $GITHUB_WORKSPACE
+          flake8 | tee flake8-output.txt
+          echo "" >> flake8-output.txt
+          cat flake8-output.txt >> append.txt
+          mv append.txt flake8-output.txt
+          
+      - name: Upload flake8 results
         uses: actions/upload-artifact@v3
         with:
-          name: linter-buildlog
-          path: buildlog.txt
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
+          name: flake8-results
+          path: ${{ github.workspace }}/flake8-output.txt  
+
+          
