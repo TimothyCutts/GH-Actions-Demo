@@ -26,7 +26,7 @@ jobs:
         run: cat flake8-output.txt
         
       - name: Append Flake8 Output to File
-        uses: actions/append-file@v3
+        uses: actions/append-file@v2
         with:
           path: flake8-output.txt
 
