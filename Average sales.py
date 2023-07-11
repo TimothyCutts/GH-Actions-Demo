@@ -72,6 +72,8 @@ def main():
     highest_sale = HighestSale(sales)
     #print to screen the highest sale of the array
     print("The highest sale amount was: $", highest_sale)
+    
+    print("This is a demo commit")
 
 
 #calling main
