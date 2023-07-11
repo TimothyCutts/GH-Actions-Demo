@@ -31,3 +31,18 @@ jobs:
         with:
           name: flake8-results
           path: ${{ github.workspace }}/flake8-output.txt  
+
+      - name: Configure Git
+        env:
+          GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
+          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+        run: |
+          git config --local user.email "${GITHUB_EMAIL}"
+          git config --local user.name "${GITHUB_USERNAME}"
+
+      - name: Commit Flake8 Output
+        run: |
+          mv flake8-output.txt $GITHUB_WORKSPACE/flake8-output.txt
+          git add flake8-output.txt
+          git commit -m "Add Flake8 output"
+          git push
