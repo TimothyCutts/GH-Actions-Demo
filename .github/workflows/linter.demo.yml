@@ -21,5 +21,5 @@ jobs:
       - name: Test with flake8
         id: flake8
         continue-on-error: true
-        run: python3 -m flake8 . --output-file=buildlog.txt
-        if: ${{ always() }}
+        run: python3 -m flake8  --output-file=buildlog.txt
+       
