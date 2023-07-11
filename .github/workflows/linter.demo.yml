@@ -20,7 +20,7 @@ jobs:
           pip install flake8
       - name: Test with flake8
         run: |
-         flake8 . > buildlog.txt
+         flake8 --exclude=.github/workflows > buildlog.txt
       - name: Upload flake8 results
         uses: actions/upload-artifact@v3
         with:
