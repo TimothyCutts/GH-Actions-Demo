@@ -20,10 +20,15 @@ jobs:
       - name: Run Flake8 and Save Output
         run: |
           cd $GITHUB_WORKSPACE
-          flake8 | tee -a flake8-output.txt
+          flake8 | tee flake8-output.txt
 
       - name: Display Flake8 Output
         run: cat flake8-output.txt
+        
+      - name: Append Flake8 Output to File
+        uses: actions/append-file@v3
+        with:
+          path: flake8-output.txt
 
       - name: Upload flake8 results
         uses: actions/upload-artifact@v3
