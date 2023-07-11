@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: flake8-results
-          path: $GITHUB_WORKSPACE/flake8-output.txt  
+          path: ${{ github.workspace }}/flake8-output.txt  
