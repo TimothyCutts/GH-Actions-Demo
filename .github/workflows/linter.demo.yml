@@ -19,11 +19,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
       - name: Test with flake8
-        run: python3 -m flake8 .
-      - name: Upload pytest test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: linter-buildlog
-          path: buildlog.txt
-        # Use always() to always run this step to publish test results when there are test failures
+        run: python3 -m flake8 . --output-file=buildlog.txt
+
         if: ${{ always() }}
