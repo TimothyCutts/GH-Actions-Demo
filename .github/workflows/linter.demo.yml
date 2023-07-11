@@ -22,8 +22,7 @@ jobs:
         id: flake8
         continue-on-error: true
         run: |
-          touch buildlog.txt
-          python3 -m flake8  2>&1 buildlog.txt
+         flake8 . > buildlog.txt
       - name: Check if 'Lint with flake8' step failed
         if: steps.flake8.outcome != 'success'
         run: |
