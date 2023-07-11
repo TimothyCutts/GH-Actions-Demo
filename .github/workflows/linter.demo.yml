@@ -21,10 +21,16 @@ jobs:
       - name: Test with flake8
         id: flake8
         continue-on-error: true
-        run: python3 -m flake8  --output-file buildlog.txt
+        run: python3 -m flake8  2>&1 buildlog.txt
       - name: Check if 'Lint with flake8' step failed
         if: steps.flake8.outcome != 'success'
         run: |
           echo "flake8 fails"
           exit 1
-       
+      - name: Upload flake8 results
+        uses: actions/upload-artifact@v3
+        with:
+          name: flake8-results
+          path: builds/buildlog.txt
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}       
