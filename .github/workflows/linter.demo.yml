@@ -19,19 +19,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
       - name: Test with flake8
-        id: flake8
-        continue-on-error: true
         run: |
          flake8 . > buildlog.txt
-      - name: Check if 'Lint with flake8' step failed
-        if: steps.flake8.outcome != 'success'
-        run: |
-          echo "flake8 fails"
-          exit 1
       - name: Upload flake8 results
         uses: actions/upload-artifact@v3
         with:
           name: flake8-results
-          path: buildlog.txt
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}       
+          path: buildlog.txt  
