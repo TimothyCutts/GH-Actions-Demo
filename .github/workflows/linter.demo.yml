@@ -22,4 +22,9 @@ jobs:
         id: flake8
         continue-on-error: true
         run: python3 -m flake8  --output-file=buildlog.txt
+      - name: Check if 'Lint with flake8' step failed
+        if: steps.flake8.outcome != 'success'
+        run: |
+          echo "flake8 fails"
+          exit 1
        
