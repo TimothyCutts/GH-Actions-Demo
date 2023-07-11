@@ -20,7 +20,7 @@ jobs:
       - name: Run Flake8 and Save Output
         run: |
           cd $GITHUB_WORKSPACE
-          flake8 > flake8-output.txt
+          flake8 | tee ../flake8-output.txt
 
       - name: Display Flake8 Output
         run: cat flake8-output.txt
