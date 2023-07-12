@@ -1,13 +1,15 @@
-##Need to have a function for: Main, Average Sale, Above average sales, and the highest sale.
-##Average sale function should add up the array and find the average and return it to main.  Needs one parameter
-##Above average function should sort using a loop to find the total sales above the average sale and return that to main. Needs two parameters
-##Highest sale function should sort using a loop to find the highest sale in the array and return that to main.  Needs one parameter
-##Main function needs to declare variables and call all remaining functions and print to screen the average and highest sales, along with the amount of sales above the average.
-##No inputs required from the user
-##sales are given to us to preload the array
+"""
+Need to have a function for: Main, Average Sale, Above average sales, and the highest sale.
+Average sale function should add up the array and find the average and return it to main.  Needs one parameter
+Above average function should sort using a loop to find the total sales above the average sale and return that to main. Needs two parameters
+Highest sale function should sort using a loop to find the highest sale in the array and return that to main.  Needs one parameter
+Main function needs to declare variables and call all remaining functions and print to screen the average and highest sales, along with the amount of sales above the average.
+No inputs required from the user
+sales are given to us to preload the array
+"""
 
 
-#Function to find average sale with in the array test
+#Function to find average sale with in the array test test
 def AverageSale(sales):
     #declare variables
     average_sale = float()
