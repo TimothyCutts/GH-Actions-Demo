@@ -1,6 +1,9 @@
 name: Flake8 Linter
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   lint:
@@ -26,10 +29,17 @@ jobs:
           cat flake8-output.txt >> append.txt
           mv append.txt flake8-output.txt
           
+      - name: Check Output Content and Set Test Status
+        run: |
+          if [ -s "$GITHUB_WORKSPACE/flake8-output.txt" ]; then
+            echo "Error: flake8-output.txt is not empty."
+            exit 1
+          else
+            echo "flake8-output.txt is empty."
+          fi
+          
       - name: Upload flake8 results
         uses: actions/upload-artifact@v3
         with:
           name: flake8-results
           path: ${{ github.workspace }}/flake8-output.txt  
-
-          
