@@ -21,7 +21,10 @@ jobs:
       - name: Run Flake8 and Save Output
         run: |
           cd $GITHUB_WORKSPACE
-          flake8 | tee flake8-output.txtt
+          flake8 | tee flake8-output.txt
+          echo "" >> flake8-output.txt
+          cat flake8-output.txt >> append.txt
+          mv append.txt flake8-output.txt
           
       - name: Upload flake8 results
         uses: actions/upload-artifact@v3
