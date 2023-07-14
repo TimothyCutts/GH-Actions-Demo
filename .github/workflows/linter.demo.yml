@@ -1,9 +1,9 @@
 name: Flake8 Linter
 
 on: [push]
- # pull_request:
-  #  branches:
-   #   - master
+  #pull_request:
+   # branches:
+     # - master
 
 jobs:
   lint:
@@ -36,15 +36,13 @@ jobs:
           name: flake8-results
           path: ${{ github.workspace }}/flake8-output.txt
           
-      - name: Check Output Content and Fail Test
+      - name: Check Output Size and Fail Test
         run: |
           file_size=$(stat -c %s ${{ github.workspace }}/flake8-output.txt)
           if [ "$file_size" -gt 1 ]; then
-            echo "Error: flake8-output.txt is not empty."
+            echo "Error: flake8-output.txt size exceeds 1 byte."
+            exit 1
           else
-            echo "flake8-output.txt is empty."
+            echo "flake8-output.txt size is within limits."
+            exit 0
           fi
-
-      - name: Fail Workflow if Output is not Empty
-        if: steps.upload_results.outputs.artifact_size > 0
-        run: exit 1
