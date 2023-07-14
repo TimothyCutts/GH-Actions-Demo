@@ -38,7 +38,7 @@ jobs:
           
       - name: Check Output Content and Fail Test
         run: |
-          if [stat -c "$GITHUB_WORKSPACE/flake8-output.txt" -gt 1]; then
+          if [ $(stat -c %s "$GITHUB_WORKSPACE/flake8-output.txt") -gt 2 ]; then
             echo "Error: flake8-output.txt is not empty."
           else
             echo "flake8-output.txt is empty."
