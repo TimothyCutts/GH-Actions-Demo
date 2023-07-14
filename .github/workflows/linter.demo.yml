@@ -32,10 +32,11 @@ jobs:
       - name: Check Output Content and Upload flake8 results
         id: check_output_content
         run: |
-          if [ -s "$GITHUB_WORKSPACE/flake8-output.txt" ]; then
+          if [ $(stat -c %s "$GITHUB_WORKSPACE/flake8-output.txt") -gt 2 ]; then
             echo "flake8-output.txt is not empty. Uploading results..."
             mv $GITHUB_WORKSPACE/flake8-output.txt $GITHUB_WORKSPACE/flake8-results.txt
             echo "upload_results=true" >> $GITHUB_ENV
+            exit 1
           else
             echo "flake8-output.txt is empty. No results to upload."
             echo "upload_results=false" >> $GITHUB_ENV
