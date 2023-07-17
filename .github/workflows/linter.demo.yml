@@ -25,9 +25,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           flake8 | tee flake8-output.txt
-          echo "" >> flake8-output.txt
-          cat flake8-output.txt >> append.txt
-          mv append.txt flake8-output.txt
+
           
       - name: Upload flake8 results
         id: upload_results
